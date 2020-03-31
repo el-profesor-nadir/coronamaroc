@@ -62,7 +62,7 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">content_copy</i>
+                    <i class="material-icons">accessible</i>
                   </div>
                   <p class="card-category">Cas Confirmés</p>
                   <h3 class="card-title">
@@ -78,7 +78,7 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">store</i>
+                    <i class="material-icons">accessibility</i>
                   </div>
                   <p class="card-category">Guéris</p>
                   <h3 class="card-title">{{ $body[0]['recovered'] }}</h3>
@@ -91,7 +91,7 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">info_outline</i>
+                    <i class="material-icons">airline_seat_flat</i>
                   </div>
                   <p class="card-category">Décès</p>
                   <h3 class="card-title">{{ $body[0]['deaths'] }}</h3>
@@ -104,7 +104,7 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                   <div class="card-icon">
-                    <i class="fa fa-twitter"></i>
+                    <i class="material-icons">directions_run</i>
                   </div>
                   <p class="card-category">Cas Exclus</p>
                   <h3 class="card-title">{{ $body[0]['negative'] }}</h3>
