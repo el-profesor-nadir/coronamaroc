@@ -66,10 +66,8 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">local_hotel</i>
                   </div>
-                  <p class="card-category">Cas Confirmés</p>
-                  <h3 class="card-title">
-                    {{ $body[0]['confirmed'] }}
-                  </h3>
+                  <p class="card-category">Cas Confirmés <br> الحالات المؤكدة</p>
+                  <h3 class="card-title"> {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_confirmés'] }} </h3>
                 </div>
                 <div class="card-footer">
                  
@@ -82,8 +80,8 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">accessibility</i>
                   </div>
-                  <p class="card-category">Guéris</p>
-                  <h3 class="card-title">{{ $body[0]['recovered'] }}</h3>
+                  <p class="card-category">Guéris <br> المتعافون</p>
+                  <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Retablis'] }}</h3>
                 </div>
                 <div class="card-footer">
                 </div>
@@ -95,8 +93,8 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">airline_seat_flat</i>
                   </div>
-                  <p class="card-category">Décès</p>
-                  <h3 class="card-title">{{ $body[0]['deaths'] }}</h3>
+                  <p class="card-category">Décès <br> الوفيات</p>
+                  <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Décédés'] }}</h3>
                 </div>
                 <div class="card-footer">
                 </div>
@@ -108,8 +106,8 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">directions_run</i>
                   </div>
-                  <p class="card-category">Cas Exclus</p>
-                  <h3 class="card-title">{{ $body[0]['negative'] }}</h3>
+                  <p class="card-category">Cas Exclus <br> الحالات المستبعدة</p>
+                  <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  }}</h3>
                 </div>
                 <div class="card-footer">
                 </div>
@@ -120,33 +118,37 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Répartition des cas par Région (Dernière mise à jour : {{ $last_update->format('d/m/Y H:i:s') }})</h4>
+                  <h4 class="card-title ">
+                    Répartition des cas par Région (Dernière mise à jour : {{ date('m/d/Y H:i:s', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }}) <br>
+                    توزيع الحالات المؤكدة حسب الجهات (اخر تحديث : {{ date('m/d/Y H:i:s', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }})
+                  </h4>
                 </div>
                 <div class="card-body">
                   <div class="">
                     <table class="table" data-order='[[ 2, "desc" ]]'>
                       <thead class=" text-primary">
                         <th>
-                          Code Région
+                          Code Région /رمز الجهة
                         </th>
                         <th>
-                          Nom Région
+                          Nom Région / إسم الجهة
                         </th>
                         <th>
-                          Nombre de cas confirmé​s
+                          Cas confirmé​s / الحالات المؤكدة
                         </th>
                       </thead>
                       <tbody>
-                        @foreach ($body[1] as $region)
+                        @foreach ($regions['features'] as $region)
                           <tr>
                             <td>
-                              {{$region['regionCode']}}
+                              {{$region['attributes']['CR']}}
                             </td>
                             <td>
-                              {{$region['region']}}
+                              {{$region['attributes']['Nom_Région_FR']}} <br>
+                              {{$region['attributes']['Nom_Région_AR']}}
                             </td>
                             <td class="text-primary">
-                              {{$region['cases']}}
+                              {{$region['attributes']['Cases'] == null ? '0' : $region['attributes']['Cases'] }}
                             </td>
                           </tr>
                         @endforeach
@@ -170,8 +172,8 @@ The above copyright notice and this permission notice shall be included in all c
                 </a>
               </li>
               <li>
-                <a href="https://covidma.herokuapp.com/api">
-                  API
+                <a href="https://covid19-geomatic.hub.arcgis.com/">
+                  APIs
                 </a>
               </li>
               <li>
