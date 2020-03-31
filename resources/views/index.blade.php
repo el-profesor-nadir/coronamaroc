@@ -163,7 +163,7 @@ The above copyright notice and this permission notice shall be included in all c
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
+                <a href="https://github.com/el-profesor-nadir/coronamaroc">
                   Github project
                 </a>
               </li>
