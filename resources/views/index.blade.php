@@ -57,8 +57,21 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <div class="main-panel">
-      <div class="content">
+      <div class="content mt-0">
         <div class="container-fluid">
+          <div class="row">
+            <div class="col">
+              <div class="card card-plain">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Corona Maroc / كورونا بالمغرب</h4>
+                  <p class="card-category">
+                    Actualité sur le nouveau coronavirus (Covid-19) au maroc <br>
+                    اخر مستجدات مرض كورونا المستجد بالمغرب
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
               <div class="card card-stats">
