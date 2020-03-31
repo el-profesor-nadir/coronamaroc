@@ -62,7 +62,7 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card card-stats">
                 <div class="card-header card-header-warning card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">accessible</i>
+                    <i class="material-icons">local_hotel</i>
                   </div>
                   <p class="card-category">Cas Confirmés</p>
                   <h3 class="card-title">
