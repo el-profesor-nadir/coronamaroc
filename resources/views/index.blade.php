@@ -48,7 +48,7 @@ The above copyright notice and this permission notice shall be included in all c
           <li class="nav-item active  ">
             <a class="nav-link" href="{{ route('index')}}">
               <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
+              <p>Tableau de bord</p>
             </a>
           </li>
         </ul>
@@ -64,16 +64,13 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">content_copy</i>
                   </div>
-                  <p class="card-category">Used Space</p>
-                  <h3 class="card-title">49/50
-                    <small>GB</small>
+                  <p class="card-category">Cas Confirmés</p>
+                  <h3 class="card-title">
+                    {{ $body[0]['confirmed'] }}
                   </h3>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="javascript:;">Get More Space...</a>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -83,13 +80,10 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">store</i>
                   </div>
-                  <p class="card-category">Revenue</p>
-                  <h3 class="card-title">$34,245</h3>
+                  <p class="card-category">Guéris</p>
+                  <h3 class="card-title">{{ $body[0]['recovered'] }}</h3>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
-                  </div>
                 </div>
               </div>
             </div>
@@ -99,13 +93,10 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="material-icons">info_outline</i>
                   </div>
-                  <p class="card-category">Fixed Issues</p>
-                  <h3 class="card-title">75</h3>
+                  <p class="card-category">Décès</p>
+                  <h3 class="card-title">{{ $body[0]['deaths'] }}</h3>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked from Github
-                  </div>
                 </div>
               </div>
             </div>
@@ -115,13 +106,10 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-icon">
                     <i class="fa fa-twitter"></i>
                   </div>
-                  <p class="card-category">Followers</p>
-                  <h3 class="card-title">+245</h3>
+                  <p class="card-category">Cas Exclus</p>
+                  <h3 class="card-title">{{ $body[0]['negative'] }}</h3>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">update</i> Just Updated
-                  </div>
                 </div>
               </div>
             </div>
@@ -130,132 +118,36 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Simple Table</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
+                  <h4 class="card-title ">Répartition des cas par Région</h4>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">
                         <th>
-                          ID
+                          Code Région
                         </th>
                         <th>
-                          Name
+                          Nom Région
                         </th>
                         <th>
-                          Country
-                        </th>
-                        <th>
-                          City
-                        </th>
-                        <th>
-                          Salary
+                          Nombre de cas confirmé​s
                         </th>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Dakota Rice
-                          </td>
-                          <td>
-                            Niger
-                          </td>
-                          <td>
-                            Oud-Turnhout
-                          </td>
-                          <td class="text-primary">
-                            $36,738
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Minerva Hooper
-                          </td>
-                          <td>
-                            Curaçao
-                          </td>
-                          <td>
-                            Sinaai-Waas
-                          </td>
-                          <td class="text-primary">
-                            $23,789
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            Sage Rodriguez
-                          </td>
-                          <td>
-                            Netherlands
-                          </td>
-                          <td>
-                            Baileux
-                          </td>
-                          <td class="text-primary">
-                            $56,142
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            Korea, South
-                          </td>
-                          <td>
-                            Overland Park
-                          </td>
-                          <td class="text-primary">
-                            $38,735
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            Malawi
-                          </td>
-                          <td>
-                            Feldkirchen in Kärnten
-                          </td>
-                          <td class="text-primary">
-                            $63,542
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            6
-                          </td>
-                          <td>
-                            Mason Porter
-                          </td>
-                          <td>
-                            Chile
-                          </td>
-                          <td>
-                            Gloucester
-                          </td>
-                          <td class="text-primary">
-                            $78,615
-                          </td>
-                        </tr>
+                        @foreach ($body[1] as $region)
+                          <tr>
+                            <td>
+                              {{$region['regionCode']}}
+                            </td>
+                            <td>
+                              {{$region['region']}}
+                            </td>
+                            <td class="text-primary">
+                              {{$region['cases']}}
+                            </td>
+                          </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -278,6 +170,11 @@ The above copyright notice and this permission notice shall be included in all c
               <li>
                 <a href="https://covidma.herokuapp.com/api">
                   API
+                </a>
+              </li>
+              <li>
+                <a href="https://laravel.com/docs/7.x/http-client">
+                  Laravel 7.3 - Http client
                 </a>
               </li>
               <li>
