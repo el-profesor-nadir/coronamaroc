@@ -423,7 +423,7 @@ The above copyright notice and this permission notice shall be included in all c
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+    //use your own code
     gtag('config', 'UA-162426973-1');
   </script>
 
