@@ -30,6 +30,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{ asset('theme/assets/demo/demo.css') }}" rel="stylesheet" />
   <link href="{{ asset('theme/assets/demo/demo.css') }}" rel="stylesheet" />
+  
 </head>
 
 <body class="">
@@ -416,6 +417,16 @@ The above copyright notice and this permission notice shall be included in all c
       });
     } );
   </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162426973-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-162426973-1');
+  </script>
+
 </body>
 
 </html>
