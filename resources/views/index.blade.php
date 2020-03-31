@@ -24,9 +24,11 @@ The above copyright notice and this permission notice shall be included in all c
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   <!-- CSS Files -->
   <link href="{{ asset('theme/assets/css/material-dashboard.css?v=2.1.2') }}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{{ asset('theme/assets/demo/demo.css') }}" rel="stylesheet" />
   <link href="{{ asset('theme/assets/demo/demo.css') }}" rel="stylesheet" />
 </head>
 
@@ -118,11 +120,11 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Répartition des cas par Région</h4>
+                  <h4 class="card-title ">Répartition des cas par Région (Dernière mise à jour : {{ $last_update->format('d/m/Y H:i:s') }})</h4>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
+                  <div class="">
+                    <table class="table" data-order='[[ 2, "desc" ]]'>
                       <thead class=" text-primary">
                         <th>
                           Code Région
@@ -390,6 +392,14 @@ The above copyright notice and this permission notice shall be included in all c
       md.initDashboardPageCharts();
 
     });
+  </script>
+  <script>
+    $(document).ready( function () {
+      $('.table').DataTable({
+        paging: false,
+        "info": false
+      });
+    } );
   </script>
 </body>
 
