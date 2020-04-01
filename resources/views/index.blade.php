@@ -58,7 +58,25 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
     <div class="main-panel">
-      <div class="content mt-0">
+       <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            
+            <ul class="navbar-nav">
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content mt-1">
         <div class="container-fluid">
           <div class="row">
             <div class="col">
@@ -173,7 +191,49 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Cumul des cas confirmé​s par jour / المبيان التراكمي للحالات المؤكدة يوميا</h4>
+                </div>
+                <div class="card-body">
+                  {!! $confirmedCasesChart->container() !!}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <h4 class="card-title">Cumul des cas guéris par jour / المبيان التراكمي للمتعافين يوميا</h4>
+                </div>
+                <div class="card-body">
+                  {!! $recoveredCasesChart->container() !!}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title">Cumul des cas décédés  par jour / المبيان التراكمي للوفيات يوميا</h4>
+                </div>
+                <div class="card-body">
+                  {!! $deathCasesChart->container() !!}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title">Comparaions des courbes : confirmé​s - guéris - décédés / مقارنة المبيانات : المؤكدة - المتعافون - الوفيات</h4>
+                </div>
+                <div class="card-body">
+                  {!! $compareCasesChart->container() !!}
+                </div>
+              </div>
+            </div>
 
+          </div>
         </div>
       </div>
       <footer class="footer">
@@ -229,8 +289,14 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="{{ asset('theme/assets/js/plugins/arrive.min.js') }}"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('theme/assets/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{ asset('theme/assets/demo/demo.js') }}"></script>
+  
+  <!-- Library for Charts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+  {!! $confirmedCasesChart->script() !!}
+  {!! $recoveredCasesChart->script() !!}
+  {!! $deathCasesChart->script() !!}
+  {!! $compareCasesChart->script() !!}
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -404,8 +470,7 @@ The above copyright notice and this permission notice shall be included in all c
   </script>
   <script>
     $(document).ready(function() {
-      // Javascript method's body can be found in assets/js/demos.js
-      md.initDashboardPageCharts();
+      
 
     });
   </script>
