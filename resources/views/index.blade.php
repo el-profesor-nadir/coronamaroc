@@ -27,7 +27,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="{{ asset('theme/assets/css/material-dashboard.min.css') }}" rel="stylesheet" />
   <link href="{{ asset('theme/assets/css/datatables.min.css') }}" rel="stylesheet" />
   <!-- Dont include this in your project -->
-  <script data-ad-client="ca-pub-3252408079657687" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script data-ad-client="ca-pub-2749678461972336" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
 <body class="">
@@ -488,6 +488,7 @@ The above copyright notice and this permission notice shall be included in all c
     //use your own code
     gtag('config', 'UA-162426973-1');
   </script>
+  
 
 </body>
 
