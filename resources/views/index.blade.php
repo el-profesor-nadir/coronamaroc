@@ -229,6 +229,16 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Pourcentage de la répartition des cas par Région / نسب توزيع الحالات المؤكدة حسب الجهات</h4>
+                </div>
+                <div class="card-body">
+                  {!! $casesByRegionChart->container() !!}
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -293,6 +303,7 @@ The above copyright notice and this permission notice shall be included in all c
   {!! $recoveredCasesChart->script() !!}
   {!! $deathCasesChart->script() !!}
   {!! $compareCasesChart->script() !!}
+  {!! $casesByRegionChart->script() !!}
 
   <script>
     $(document).ready(function() {

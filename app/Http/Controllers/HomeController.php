@@ -10,6 +10,7 @@ use App\Charts\ConfirmedCasesChart;
 use App\Charts\RecoveredCasesChart;
 use App\Charts\DeathCasesChart;
 use App\Charts\CompareCasesChart;
+use App\Charts\CasesByRegionChart;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,7 @@ class HomeController extends Controller
         //charts
 
         $collection = collect($stats['features']);
+        $regions_collection = collect($regions['features']);
 
         //confirmed cases chart
 
@@ -105,6 +107,32 @@ class HomeController extends Controller
                         ->color('#f44336')
                         ->backgroundColor('rgba(255, 255, 255, 0.1)');
 
-        return view('index',compact('stats','regions','confirmedCasesChart','recoveredCasesChart','deathCasesChart','compareCasesChart'));
+        //cases by region chart 
+
+        $sumCases =   $regions_collection->pluck('attributes')->sum('Cases');
+        $casesByRegionKeys =   $regions_collection->pluck('attributes')
+                                            ->map(function ($item) use($sumCases) {
+                                                return $item['Nom_Région_FR'] . ' / ' .round(($item['Cases']*100)/$sumCases,2).'% / '. $item['Nom_Région_AR'] ;
+                                            });  
+                                                             
+        $casesByRegionValues   =   $regions_collection->pluck('attributes')
+                                            ->pluck('Cases');
+                                             
+        $casesByRegionChart = new CasesByRegionChart;
+        $casesByRegionChart->labels($casesByRegionKeys);
+        $casesByRegionChart->dataset('cas par région / الحالات حسب الجهات', 'pie', $casesByRegionValues)
+                            ->backgroundColor(
+                                [
+                                    'rgb(26,19,52)','rgb(38,41,74)','rgb(1,84,90)','rgb(1,115,81)',
+                                    'rgb(3,195,131)','rgb(170,217,98)','rgb(251,191,69)','rgb(239,106,50)',
+                                    'rgb(237,3,69)','rgb(161,42,94)','rgb(113,1,98)','rgb(17,1,65)'
+                                ]);
+                                        
+                                       
+                                        
+
+        return view('index',compact('stats','regions','confirmedCasesChart',
+            'recoveredCasesChart','deathCasesChart','compareCasesChart',
+            'casesByRegionChart'));
     }
 }
