@@ -11,6 +11,9 @@ use App\Charts\RecoveredCasesChart;
 use App\Charts\DeathCasesChart;
 use App\Charts\CompareCasesChart;
 use App\Charts\CasesByRegionChart;
+use App\Charts\ConfirmedCasesByDayChart;
+use App\Charts\RecoveredCasesByDayChart;
+use App\Charts\DeathCasesByDayChart;
 
 class HomeController extends Controller
 {
@@ -128,11 +131,61 @@ class HomeController extends Controller
                                     'rgb(237,3,69)','rgb(161,42,94)','rgb(113,1,98)','rgb(17,1,65)'
                                 ]);
                                         
-                                       
+        // confirmed cases by day chart
+        
+        $confirmedByDayCasesKeys =  $collection->pluck('attributes')
+                                        ->pluck('Date')
+                                        ->map(function ($item) {
+                                            return date('m/d/Y', $item / 1000);
+                                        });
+
+        $confirmedByDayCasesValues =  $collection->pluck('attributes')
+                                        ->pluck('Cas_Jour');
+                                                                            
+        $confirmedCasesByDayChart = new ConfirmedCasesByDayChart;
+        $confirmedCasesByDayChart->labels($confirmedByDayCasesKeys);
+        $confirmedCasesByDayChart->dataset('nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم', 'bar', $confirmedByDayCasesValues)
+                            ->color('#ff9800')
+                            ->backgroundColor('#ff9800');
+
+        // recovered cases by day chart  
+
+        $recoveredByDayCasesKeys =  $collection->pluck('attributes')
+                                        ->pluck('Date')
+                                        ->map(function ($item) {
+                                            return date('m/d/Y', $item / 1000);
+                                        });
+
+        $recoveredByDayCasesValues =  $collection->pluck('attributes')
+                                        ->pluck('Rtabalis_jour');
+
+        $recoveredCasesByDayChart = new RecoveredCasesByDayChart;
+        $recoveredCasesByDayChart->labels($recoveredByDayCasesKeys);
+        $recoveredCasesByDayChart->dataset('nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم', 'bar', $recoveredByDayCasesValues)
+                            ->color('#4caf50')
+                            ->backgroundColor('#4caf50'); 
+
+        // death cases by day chart      
+        
+        $deathByDayCasesKeys =  $collection->pluck('attributes')
+                                        ->pluck('Date')
+                                        ->map(function ($item) {
+                                            return date('m/d/Y', $item / 1000);
+                                        });
+
+        $deathByDayCasesValues =  $collection->pluck('attributes')
+                                        ->pluck('Deces_jour');
+                                                                            
+        $deathCasesByDayChart = new DeathCasesByDayChart;
+        $deathCasesByDayChart->labels($deathByDayCasesKeys);
+        $deathCasesByDayChart->dataset('nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم', 'bar', $deathByDayCasesValues)
+                            ->color('#f44336')
+                            ->backgroundColor('#f44336');
                                         
 
         return view('index',compact('stats','regions','confirmedCasesChart',
             'recoveredCasesChart','deathCasesChart','compareCasesChart',
-            'casesByRegionChart'));
+            'casesByRegionChart','confirmedCasesByDayChart','recoveredCasesByDayChart',
+            'deathCasesByDayChart'));
     }
 }

@@ -239,6 +239,36 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم</h4>
+                </div>
+                <div class="card-body">
+                  {!! $confirmedCasesByDayChart->container() !!}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">nombre des cas rétablis par jour / عدد المتعافين كل يوم</h4>
+                </div>
+                <div class="card-body">
+                  {!! $recoveredCasesByDayChart->container() !!}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">nombre des cas décédés par jour / عدد الوفيات كل يوم</h4>
+                </div>
+                <div class="card-body">
+                  {!! $deathCasesByDayChart->container() !!}
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -304,6 +334,9 @@ The above copyright notice and this permission notice shall be included in all c
   {!! $deathCasesChart->script() !!}
   {!! $compareCasesChart->script() !!}
   {!! $casesByRegionChart->script() !!}
+  {!! $confirmedCasesByDayChart->script() !!}
+  {!! $recoveredCasesByDayChart->script() !!}
+  {!! $deathCasesByDayChart->script() !!}
 
   <script>
     $(document).ready(function() {
