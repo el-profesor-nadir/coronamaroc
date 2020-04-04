@@ -188,6 +188,12 @@ The above copyright notice and this permission notice shall be included in all c
                         <th>
                           Cas confirmé​s / الحالات المؤكدة
                         </th>
+                        <th>
+                          Rétablis  / المتعافون
+                        </th>
+                        <th>
+                          Décédés  / الوفيات
+                        </th>
                       </thead>
                       <tbody>
                         @foreach ($regions['features'] as $region)
@@ -201,6 +207,12 @@ The above copyright notice and this permission notice shall be included in all c
                             </td>
                             <td class="text-primary">
                               {{$region['attributes']['Cases'] == null ? '0' : $region['attributes']['Cases'] }}
+                            </td>
+                            <td class="text-success">
+                              {{$region['attributes']['Recoveries'] == null ? '0' : $region['attributes']['Recoveries'] }}
+                            </td>
+                            <td class="text-danger">
+                              {{$region['attributes']['Deaths'] == null ? '0' : $region['attributes']['Deaths'] }}
                             </td>
                           </tr>
                         @endforeach
