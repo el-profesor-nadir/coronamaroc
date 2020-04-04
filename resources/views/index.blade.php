@@ -176,7 +176,7 @@ The above copyright notice and this permission notice shall be included in all c
                   </h4>
                 </div>
                 <div class="card-body">
-                  <div class="">
+                  <div class="table-responsive">
                     <table class="table" data-order='[[ 2, "desc" ]]'>
                       <thead class=" text-primary">
                         <th>
