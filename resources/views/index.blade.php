@@ -157,7 +157,7 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <div class="card-footer">
                   <div class="stats">
-                    <span class="text-success font-weight-bold">
+                    <span class="text-info font-weight-bold">
                       <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
                       {{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  - $stats['features'][count($stats['features'])-2]['attributes']['Negative_tests']  }}
                     </span>
@@ -171,8 +171,8 @@ The above copyright notice and this permission notice shall be included in all c
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">
-                    Répartition des cas par Région (Dernière mise à jour : {{ date('m/d/Y H:i:s', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }}) <br>
-                    توزيع الحالات المؤكدة حسب الجهات (اخر تحديث : {{ date('m/d/Y H:i:s', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }})
+                    Répartition des cas par Région (Dernière mise à jour : {{ date('m/d/Y', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }}) <br>
+                    توزيع الحالات المؤكدة حسب الجهات (اخر تحديث : {{ date('m/d/Y', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }})
                   </h4>
                 </div>
                 <div class="card-body">
@@ -301,23 +301,28 @@ The above copyright notice and this permission notice shall be included in all c
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://github.com/el-profesor-nadir/coronamaroc">
+                <a target="_blank" href="https://github.com/el-profesor-nadir/coronamaroc">
                   Github project
                 </a>
               </li>
               <li>
-                <a href="https://covid19-geomatic.hub.arcgis.com/">
+                <a target="_blank" href="https://covid19-geomatic.hub.arcgis.com/">
                   APIs
                 </a>
               </li>
               <li>
-                <a href="https://laravel.com/docs/7.x/http-client">
+                <a target="_blank" href="https://laravel.com/docs/7.x/http-client">
                   Laravel 7.3 - Http client
                 </a>
               </li>
               <li>
-                <a href="https://github.com/creativetimofficial/material-dashboard">
+                <a target="_blank" href="https://github.com/creativetimofficial/material-dashboard">
                   Material Dashboard Used
+                </a>
+              </li>
+              <li>
+                <a target="_blank" href="https://charts.erik.cat/">
+                  Laravel Charts
                 </a>
               </li>
             </ul>
