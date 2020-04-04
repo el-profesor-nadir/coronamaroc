@@ -99,7 +99,12 @@ The above copyright notice and this permission notice shall be included in all c
                   <h3 class="card-title"> {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_confirmés'] }} </h3>
                 </div>
                 <div class="card-footer">
-                 
+                  <div class="stats">
+                    <span class="text-warning font-weight-bold">
+                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_Jour'] }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,6 +118,12 @@ The above copyright notice and this permission notice shall be included in all c
                   <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Retablis'] }}</h3>
                 </div>
                 <div class="card-footer">
+                  <div class="stats">
+                    <span class="text-success font-weight-bold">
+                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Rtabalis_jour'] }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,6 +137,12 @@ The above copyright notice and this permission notice shall be included in all c
                   <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Décédés'] }}</h3>
                 </div>
                 <div class="card-footer">
+                  <div class="stats">
+                    <span class="text-danger font-weight-bold">
+                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Deces_jour'] }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,6 +156,12 @@ The above copyright notice and this permission notice shall be included in all c
                   <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  }}</h3>
                 </div>
                 <div class="card-footer">
+                  <div class="stats">
+                    <span class="text-success font-weight-bold">
+                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  - $stats['features'][count($stats['features'])-2]['attributes']['Negative_tests']  }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
