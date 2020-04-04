@@ -14,6 +14,7 @@ use App\Charts\CasesByRegionChart;
 use App\Charts\ConfirmedCasesByDayChart;
 use App\Charts\RecoveredCasesByDayChart;
 use App\Charts\DeathCasesByDayChart;
+use App\Charts\AllCasesByRegionChart;
 
 class HomeController extends Controller
 {
@@ -161,7 +162,7 @@ class HomeController extends Controller
 
         $recoveredCasesByDayChart = new RecoveredCasesByDayChart;
         $recoveredCasesByDayChart->labels($recoveredByDayCasesKeys);
-        $recoveredCasesByDayChart->dataset('nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم', 'bar', $recoveredByDayCasesValues)
+        $recoveredCasesByDayChart->dataset('nombre des cas rétablis par jour / عدد المتعاقين كل يوم', 'bar', $recoveredByDayCasesValues)
                             ->color('#4caf50')
                             ->backgroundColor('#4caf50'); 
 
@@ -178,7 +179,36 @@ class HomeController extends Controller
                                                                             
         $deathCasesByDayChart = new DeathCasesByDayChart;
         $deathCasesByDayChart->labels($deathByDayCasesKeys);
-        $deathCasesByDayChart->dataset('nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم', 'bar', $deathByDayCasesValues)
+        $deathCasesByDayChart->dataset('nombre des cas décédés par jour / عدد الوفيات كل يوم', 'bar', $deathByDayCasesValues)
+                            ->color('#f44336')
+                            ->backgroundColor('#f44336');
+
+
+        //all cases by region chart      
+        
+        $allCasesByRegionKeys =  $regions_collection->pluck('attributes')
+                                                    ->map(function ($item) use($sumCases) {
+                                                        return $item['Nom_Région_FR'] . ' / ' . $item['Nom_Région_AR'] ;
+                                                    }); 
+
+        $ConfirmedCasesByRegionValues   =   $regions_collection->pluck('attributes')
+                                                                ->pluck('Cases');
+        $recoveredCasesByRegionValues   =   $regions_collection->pluck('attributes')
+                                                                ->pluck('Recoveries');
+        $deathCasesByRegionValues       =   $regions_collection->pluck('attributes')
+                                                                ->pluck('Deaths');
+                                                                            
+        $allCasesByRegionChart = new AllCasesByRegionChart;
+        $allCasesByRegionChart->labels($allCasesByRegionKeys);
+        $allCasesByRegionChart->height(500);
+       
+        $allCasesByRegionChart->dataset('Cas confirmés الحالات المؤكدة', 'horizontalBar', $ConfirmedCasesByRegionValues)
+                            ->color('#ff9800')
+                            ->backgroundColor('#ff9800');
+        $allCasesByRegionChart->dataset('Rétablis المتعافون', 'horizontalBar', $recoveredCasesByRegionValues)
+                            ->color('#4caf50')
+                            ->backgroundColor('#4caf50');
+        $allCasesByRegionChart->dataset('Décédés الوفيات', 'horizontalBar', $deathCasesByRegionValues)
                             ->color('#f44336')
                             ->backgroundColor('#f44336');
                                         
@@ -186,6 +216,6 @@ class HomeController extends Controller
         return view('index',compact('stats','regions','confirmedCasesChart',
             'recoveredCasesChart','deathCasesChart','compareCasesChart',
             'casesByRegionChart','confirmedCasesByDayChart','recoveredCasesByDayChart',
-            'deathCasesByDayChart'));
+            'deathCasesByDayChart','allCasesByRegionChart'));
     }
 }

@@ -304,6 +304,16 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="card card-chart">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">nombre des cas par région / عدد الحالات حسب كل جهة</h4>
+                </div>
+                <div class="card-body">
+                  {!! $allCasesByRegionChart->container() !!}
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -377,6 +387,7 @@ The above copyright notice and this permission notice shall be included in all c
   {!! $confirmedCasesByDayChart->script() !!}
   {!! $recoveredCasesByDayChart->script() !!}
   {!! $deathCasesByDayChart->script() !!}
+  {!! $allCasesByRegionChart->script() !!}
 
   <script>
     $(document).ready(function() {
