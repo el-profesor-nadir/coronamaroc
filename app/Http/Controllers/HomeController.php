@@ -33,8 +33,7 @@ class HomeController extends Controller
         $url_stats = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=json';
         $response_stats = Http::get($url_stats);
         $stats = $response_stats->json();
-        array_pop($stats["features"]);
-        array_pop($stats["features"]);
+
         
         $url_regions = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
         $response_regions = Http::get($url_regions);
