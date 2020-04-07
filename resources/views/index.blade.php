@@ -1,590 +1,148 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
+@extends('layouts.app')
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('theme/assets/img/apple-icon.png') }}">
-  <link rel="icon" type="image/png" href="{{ asset('theme/assets/img/favicon.png') }}">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Covid-19 Morocco
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <!-- CSS Files -->
-  <link href="{{ asset('theme/assets/css/material-dashboard.min.css') }}" rel="stylesheet" />
-  <link href="{{ asset('theme/assets/css/datatables.min.css') }}" rel="stylesheet" />
-  <!-- Dont include this in your project -->
-  <script data-ad-client="ca-pub-2749678461972336" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-</head>
-
-<body class="">
-  <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('theme/assets/img/sidebar-1.jpg') }}">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-      -->
-      <div class="logo">
-        <a href="{{ route('index')}}" class="simple-text logo-normal">
-          Corona Maroc
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="{{ route('index')}}">
-              <i class="material-icons">dashboard</i>
-              <p>Tableau de bord</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-panel">
-       <!-- Navbar -->
-       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            
-            <ul class="navbar-nav">
-              
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navbar -->
-      <div class="content mt-1">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col">
-              <div class="card card-plain">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Corona Maroc / كورونا بالمغرب</h4>
-                  <p class="card-category">
-                    Actualité sur le nouveau coronavirus (Covid-19) au maroc <br>
-                    اخر مستجدات مرض كورونا المستجد بالمغرب
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">local_hotel</i>
-                  </div>
-                  <p class="card-category">Cas Confirmés <br> الحالات المؤكدة</p>
-                  <h3 class="card-title"> {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_confirmés'] }} </h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <span class="text-warning font-weight-bold">
-                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_Jour'] }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-success card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">accessibility</i>
-                  </div>
-                  <p class="card-category">Guéris <br> المتعافون</p>
-                  <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Retablis'] }}</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <span class="text-success font-weight-bold">
-                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Rtabalis_jour'] }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">airline_seat_flat</i>
-                  </div>
-                  <p class="card-category">Décès <br> الوفيات</p>
-                  <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Décédés'] }}</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <span class="text-danger font-weight-bold">
-                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Deces_jour'] }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-info card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">directions_run</i>
-                  </div>
-                  <p class="card-category">Cas Exclus <br> الحالات المستبعدة</p>
-                  <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  }}</h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <span class="text-info font-weight-bold">
-                      <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-                      {{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  - $stats['features'][count($stats['features'])-2]['attributes']['Negative_tests']  }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">
-                    Répartition des cas par Région (Dernière mise à jour : {{ date('m/d/Y', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }}) <br>
-                    توزيع الحالات المؤكدة حسب الجهات (اخر تحديث : {{ date('m/d/Y', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }})
-                  </h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table" data-order='[[ 2, "desc" ]]'>
-                      <thead class=" text-primary">
-                        <th>
-                          Code Région /رمز الجهة
-                        </th>
-                        <th>
-                          Nom Région / إسم الجهة
-                        </th>
-                        <th>
-                          Cas confirmé​s / الحالات المؤكدة
-                        </th>
-                        <th>
-                          Rétablis  / المتعافون
-                        </th>
-                        <th>
-                          Décédés  / الوفيات
-                        </th>
-                      </thead>
-                      <tbody>
-                        @foreach ($regions['features'] as $region)
-                          <tr>
-                            <td>
-                              {{$region['attributes']['CR']}}
-                            </td>
-                            <td>
-                              {{$region['attributes']['Nom_Région_FR']}} <br>
-                              {{$region['attributes']['Nom_Région_AR']}}
-                            </td>
-                            <td class="text-primary">
-                              {{$region['attributes']['Cases'] == null ? '0' : $region['attributes']['Cases'] }}
-                            </td>
-                            <td class="text-success">
-                              {{$region['attributes']['Recoveries'] == null ? '0' : $region['attributes']['Recoveries'] }}
-                            </td>
-                            <td class="text-danger">
-                              {{$region['attributes']['Deaths'] == null ? '0' : $region['attributes']['Deaths'] }}
-                            </td>
-                          </tr>
-                        @endforeach
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Cumul des cas confirmé​s par jour / المبيان التراكمي للحالات المؤكدة يوميا</h4>
-                </div>
-                <div class="card-body">
-                  {!! $confirmedCasesChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-success">
-                  <h4 class="card-title">Cumul des cas guéris par jour / المبيان التراكمي للمتعافين يوميا</h4>
-                </div>
-                <div class="card-body">
-                  {!! $recoveredCasesChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-danger">
-                  <h4 class="card-title">Cumul des cas décédés  par jour / المبيان التراكمي للوفيات يوميا</h4>
-                </div>
-                <div class="card-body">
-                  {!! $deathCasesChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-info">
-                  <h4 class="card-title">Comparaions des courbes : confirmé​s - guéris - décédés / مقارنة المبيانات : المؤكدة - المتعافون - الوفيات</h4>
-                </div>
-                <div class="card-body">
-                  {!! $compareCasesChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Pourcentage de la répartition des cas par Région / نسب توزيع الحالات المؤكدة حسب الجهات</h4>
-                </div>
-                <div class="card-body">
-                  {!! $casesByRegionChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">nombre des cas confirmés par jour / عدد الحالات المؤكدة كل يوم</h4>
-                </div>
-                <div class="card-body">
-                  {!! $confirmedCasesByDayChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">nombre des cas rétablis par jour / عدد المتعافين كل يوم</h4>
-                </div>
-                <div class="card-body">
-                  {!! $recoveredCasesByDayChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">nombre des cas décédés par jour / عدد الوفيات كل يوم</h4>
-                </div>
-                <div class="card-body">
-                  {!! $deathCasesByDayChart->container() !!}
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="card card-chart">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">nombre des cas par région / عدد الحالات حسب كل جهة</h4>
-                </div>
-                <div class="card-body">
-                  {!! $allCasesByRegionChart->container() !!}
-                </div>
-              </div>
-            </div>
-
-          </div>
+@section('content')
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="card card-plain">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Corona Maroc / كورونا بالمغرب</h4>
+          <p class="card-category">
+            Actualité sur le nouveau coronavirus (Covid-19) au maroc <br>
+            اخر مستجدات مرض كورونا المستجد بالمغرب
+          </p>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a target="_blank" href="https://github.com/el-profesor-nadir/coronamaroc">
-                  Github project
-                </a>
-              </li>
-              <li>
-                <a target="_blank" href="https://covid19-geomatic.hub.arcgis.com/">
-                  APIs
-                </a>
-              </li>
-              <li>
-                <a target="_blank" href="https://laravel.com/docs/7.x/http-client">
-                  Laravel 7.3 - Http client
-                </a>
-              </li>
-              <li>
-                <a target="_blank" href="https://github.com/creativetimofficial/material-dashboard">
-                  Material Dashboard Used
-                </a>
-              </li>
-              <li>
-                <a target="_blank" href="https://charts.erik.cat/">
-                  Laravel Charts
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            Nadir Hamza (hamzanadir.freelance@gmail.com).
-          </div>
-        </div>
-      </footer>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">local_hotel</i>
+          </div>
+          <p class="card-category">Cas Confirmés <br> الحالات المؤكدة</p>
+          <h3 class="card-title"> {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_confirmés'] }} </h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <span class="text-warning font-weight-bold">
+              <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_Jour'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-success card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">accessibility</i>
+          </div>
+          <p class="card-category">Guéris <br> المتعافون</p>
+          <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Retablis'] }}</h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <span class="text-success font-weight-bold">
+              <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Rtabalis_jour'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-danger card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">airline_seat_flat</i>
+          </div>
+          <p class="card-category">Décès <br> الوفيات</p>
+          <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Décédés'] }}</h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <span class="text-danger font-weight-bold">
+              <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Deces_jour'] }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats">
+        <div class="card-header card-header-info card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">directions_run</i>
+          </div>
+          <p class="card-category">Cas Exclus <br> الحالات المستبعدة</p>
+          <h3 class="card-title">{{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  }}</h3>
+        </div>
+        <div class="card-footer">
+          <div class="stats">
+            <span class="text-info font-weight-bold">
+              <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Negative_tests']  - $stats['features'][count($stats['features'])-2]['attributes']['Negative_tests']  }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-chart">
+        <div class="card-header card-header-warning">
+          <h4 class="card-title">Cumul des cas confirmé​s par jour / المبيان التراكمي للحالات المؤكدة يوميا</h4>
+        </div>
+        <div class="card-body">
+          {!! $confirmedCasesChart->container() !!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card card-chart">
+        <div class="card-header card-header-success">
+          <h4 class="card-title">Cumul des cas guéris par jour / المبيان التراكمي للمتعافين يوميا</h4>
+        </div>
+        <div class="card-body">
+          {!! $recoveredCasesChart->container() !!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card card-chart">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Cumul des cas décédés  par jour / المبيان التراكمي للوفيات يوميا</h4>
+        </div>
+        <div class="card-body">
+          {!! $deathCasesChart->container() !!}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card card-chart">
+        <div class="card-header card-header-info">
+          <h4 class="card-title">Comparaions des courbes : confirmé​s - guéris - décédés / مقارنة المبيانات : المؤكدة - المتعافون - الوفيات</h4>
+        </div>
+        <div class="card-body">
+          {!! $compareCasesChart->container() !!}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
 
-  <!--   Core JS Files   -->
-  <script src="{{ asset('theme/assets/js/core/jquery.min.js') }}"></script>
-  <script src="{{ asset('theme/assets/js/core/popper.min.js') }}"></script>
-  <script src="{{ asset('theme/assets/js/core/bootstrap-material-design.min.js') }}"></script>
-  <script src="{{ asset('theme/assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
-  <!-- Plugin for the momentJs  -->
-  <script src="{{ asset('theme/assets/js/plugins/moment.min.js') }}"></script>
-  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="{{ asset('theme/assets/js/plugins/jquery.dataTables.min.js') }}"></script>
-  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-  <!-- Library for adding dinamically elements -->
-  <script src="{{ asset('theme/assets/js/plugins/arrive.min.js') }}"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ asset('theme/assets/js/material-dashboard.js?v=2.1.2') }}" type="text/javascript"></script>
-  
-  <!-- Library for Charts -->
+@section('scripts')
+      <!-- Library for Charts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
   {!! $confirmedCasesChart->script() !!}
   {!! $recoveredCasesChart->script() !!}
   {!! $deathCasesChart->script() !!}
   {!! $compareCasesChart->script() !!}
-  {!! $casesByRegionChart->script() !!}
-  {!! $confirmedCasesByDayChart->script() !!}
-  {!! $recoveredCasesByDayChart->script() !!}
-  {!! $deathCasesByDayChart->script() !!}
-  {!! $allCasesByRegionChart->script() !!}
-
-  <script>
-    $(document).ready(function() {
-      $().ready(function() {
-        $sidebar = $('.sidebar');
-
-        $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-        $full_page = $('.full-page');
-
-        $sidebar_responsive = $('body > .navbar-collapse');
-
-        window_width = $(window).width();
-
-        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-        if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-          if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-            $('.fixed-plugin .dropdown').addClass('open');
-          }
-
-        }
-
-        $('.fixed-plugin a').click(function(event) {
-          // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
-
-        $('.fixed-plugin .active-color span').click(function() {
-          $full_page_background = $('.full-page-background');
-
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('color');
-
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-color', new_color);
-          }
-
-          if ($full_page.length != 0) {
-            $full_page.attr('filter-color', new_color);
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.attr('data-color', new_color);
-          }
-        });
-
-        $('.fixed-plugin .background-color .badge').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-
-          var new_color = $(this).data('background-color');
-
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-background-color', new_color);
-          }
-        });
-
-        $('.fixed-plugin .img-holder').click(function() {
-          $full_page_background = $('.full-page-background');
-
-          $(this).parent('li').siblings().removeClass('active');
-          $(this).parent('li').addClass('active');
-
-
-          var new_image = $(this).find("img").attr('src');
-
-          if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-            $sidebar_img_container.fadeOut('fast', function() {
-              $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-              $sidebar_img_container.fadeIn('fast');
-            });
-          }
-
-          if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-            $full_page_background.fadeOut('fast', function() {
-              $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-              $full_page_background.fadeIn('fast');
-            });
-          }
-
-          if ($('.switch-sidebar-image input:checked').length == 0) {
-            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-          }
-
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-          }
-        });
-
-        $('.switch-sidebar-image input').change(function() {
-          $full_page_background = $('.full-page-background');
-
-          $input = $(this);
-
-          if ($input.is(':checked')) {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar_img_container.fadeIn('fast');
-              $sidebar.attr('data-image', '#');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page_background.fadeIn('fast');
-              $full_page.attr('data-image', '#');
-            }
-
-            background_image = true;
-          } else {
-            if ($sidebar_img_container.length != 0) {
-              $sidebar.removeAttr('data-image');
-              $sidebar_img_container.fadeOut('fast');
-            }
-
-            if ($full_page_background.length != 0) {
-              $full_page.removeAttr('data-image', '#');
-              $full_page_background.fadeOut('fast');
-            }
-
-            background_image = false;
-          }
-        });
-
-        $('.switch-sidebar-mini input').change(function() {
-          $body = $('body');
-
-          $input = $(this);
-
-          if (md.misc.sidebar_mini_active == true) {
-            $('body').removeClass('sidebar-mini');
-            md.misc.sidebar_mini_active = false;
-
-            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-          } else {
-
-            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-            setTimeout(function() {
-              $('body').addClass('sidebar-mini');
-
-              md.misc.sidebar_mini_active = true;
-            }, 300);
-          }
-
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
-
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
-
-        });
-      });
-    });
-  </script>
-  <script>
-    $(document).ready(function() {
-      
-
-    });
-  </script>
-  <script>
-    $(document).ready( function () {
-      $('.table').DataTable({
-        paging: false,
-        "info": false
-      });
-    } );
-  </script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162426973-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    //use your own code
-    gtag('config', 'UA-162426973-1');
-  </script>
-  
-
-</body>
-
-</html>
+@endsection

@@ -18,6 +18,7 @@ use App\Charts\AllCasesByRegionChart;
 
 class HomeController extends Controller
 {
+
     public function index() {
 
         // old api not updated
@@ -111,27 +112,26 @@ class HomeController extends Controller
         $compareCasesChart->dataset('décès / الوفيات', 'line', $deathCasesValues)
                         ->color('#f44336')
                         ->backgroundColor('rgba(255, 255, 255, 0.1)');
+                                                                        
+        return view('index',compact('stats','regions','confirmedCasesChart',
+            'recoveredCasesChart','deathCasesChart','compareCasesChart'));
+    }
 
-        //cases by region chart 
+    public function days() {
 
-        $sumCases =   $regions_collection->pluck('attributes')->sum('Cases');
-        $casesByRegionKeys =   $regions_collection->pluck('attributes')
-                                            ->map(function ($item) use($sumCases) {
-                                                return $item['Nom_Région_FR'] . ' / ' .round(($item['Cases']*100)/$sumCases,2).'% / '. $item['Nom_Région_AR'] ;
-                                            });  
-                                                             
-        $casesByRegionValues   =   $regions_collection->pluck('attributes')
-                                            ->pluck('Cases');
-                                             
-        $casesByRegionChart = new CasesByRegionChart;
-        $casesByRegionChart->labels($casesByRegionKeys);
-        $casesByRegionChart->dataset('cas par région / الحالات حسب الجهات', 'pie', $casesByRegionValues)
-                            ->backgroundColor(
-                                [
-                                    'rgb(26,19,52)','rgb(38,41,74)','rgb(1,84,90)','rgb(1,115,81)',
-                                    'rgb(3,195,131)','rgb(170,217,98)','rgb(251,191,69)','rgb(239,106,50)',
-                                    'rgb(237,3,69)','rgb(161,42,94)','rgb(113,1,98)','rgb(17,1,65)'
-                                ]);
+        $url_stats = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+        $response_stats = Http::get($url_stats);
+        $stats = $response_stats->json();
+
+        
+        $url_regions = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+        $response_regions = Http::get($url_regions);
+        $regions = $response_regions->json();
+        
+        //charts
+
+        $collection = collect($stats['features']);
+        $regions_collection = collect($regions['features']);
                                         
         // confirmed cases by day chart
         
@@ -183,8 +183,50 @@ class HomeController extends Controller
         $deathCasesByDayChart->dataset('nombre des cas décédés par jour / عدد الوفيات كل يوم', 'bar', $deathByDayCasesValues)
                             ->color('#f44336')
                             ->backgroundColor('#f44336');
+                                        
 
+        return view('days',compact('stats','regions'
+            ,'confirmedCasesByDayChart','recoveredCasesByDayChart',
+            'deathCasesByDayChart'));
+    }
 
+    public function regions() {
+        
+        $url_stats = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+        $response_stats = Http::get($url_stats);
+        $stats = $response_stats->json();
+
+        
+        $url_regions = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+        $response_regions = Http::get($url_regions);
+        $regions = $response_regions->json();
+        
+        //charts
+
+        $collection = collect($stats['features']);
+        $regions_collection = collect($regions['features']);
+
+        //cases by region chart 
+
+        $sumCases =   $regions_collection->pluck('attributes')->sum('Cases');
+        $casesByRegionKeys =   $regions_collection->pluck('attributes')
+                                            ->map(function ($item) use($sumCases) {
+                                                return $item['Nom_Région_FR'] . ' / ' .round(($item['Cases']*100)/$sumCases,2).'% / '. $item['Nom_Région_AR'] ;
+                                            });  
+                                                             
+        $casesByRegionValues   =   $regions_collection->pluck('attributes')
+                                            ->pluck('Cases');
+                                             
+        $casesByRegionChart = new CasesByRegionChart;
+        $casesByRegionChart->labels($casesByRegionKeys);
+        $casesByRegionChart->dataset('cas par région / الحالات حسب الجهات', 'pie', $casesByRegionValues)
+                            ->backgroundColor(
+                                [
+                                    'rgb(26,19,52)','rgb(38,41,74)','rgb(1,84,90)','rgb(1,115,81)',
+                                    'rgb(3,195,131)','rgb(170,217,98)','rgb(251,191,69)','rgb(239,106,50)',
+                                    'rgb(237,3,69)','rgb(161,42,94)','rgb(113,1,98)','rgb(17,1,65)'
+                                ]);
+                                        
         //all cases by region chart      
         
         $allCasesByRegionKeys =  $regions_collection->pluck('attributes')
@@ -214,9 +256,22 @@ class HomeController extends Controller
                             ->backgroundColor('#f44336');
                                         
 
-        return view('index',compact('stats','regions','confirmedCasesChart',
-            'recoveredCasesChart','deathCasesChart','compareCasesChart',
-            'casesByRegionChart','confirmedCasesByDayChart','recoveredCasesByDayChart',
-            'deathCasesByDayChart','allCasesByRegionChart'));
+        return view('regions',compact('stats','regions',
+        'casesByRegionChart','allCasesByRegionChart'));
     }
+
+    public function cities() {
+        
+        $url_stats = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+        $response_stats = Http::get($url_stats);
+        $stats = $response_stats->json();
+
+        $url_cities = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/6/query?where=1%3D1&outFields=VILLES_ID,NOM,cas_confir&outSR=4326&f=json';
+        $response_cities = Http::get($url_cities);
+        $cities = $response_cities->json();
+
+        return view('cities',compact('stats','cities'));
+    }
+
+
 }
