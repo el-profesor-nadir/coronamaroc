@@ -20,8 +20,8 @@
       <div class="card">
         <div class="card-header card-header-primary">
           <h4 class="card-title ">
-            Répartition des cas par ville (Dernière mise à jour : {{ date('m/d/Y', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }}) <br>
-            توزيع الحالات المؤكدة حسب المدن (اخر تحديث : {{ date('m/d/Y', $stats['features'][count($stats['features'])-1]['attributes']['Date']/1000) }})
+            Répartition des cas par ville (Dernière mise à jour : ) <br>
+            توزيع الحالات المؤكدة حسب المدن (اخر تحديث : )
           </h4>
         </div>
         <div class="card-body">

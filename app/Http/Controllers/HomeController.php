@@ -50,7 +50,7 @@ class HomeController extends Controller
         $confirmedCasesKeys =  $collection->pluck('attributes')
                                         ->pluck('Date')
                                         ->map(function ($item) {
-                                            return date('m/d/Y', $item / 1000);
+                                            return date('d/m/Y', $item / 1000);
                                         });
 
         $confirmedCasesValues =  $collection->pluck('attributes')
@@ -66,7 +66,7 @@ class HomeController extends Controller
         $recoveredCasesKeys =   $collection->pluck('attributes')
                                             ->pluck('Date')
                                             ->map(function ($item) {
-                                                return date('m/d/Y', $item / 1000);
+                                                return date('d/m/Y', $item / 1000);
                                             });
 
         $recoveredCasesValues   =   $collection->pluck('attributes')
@@ -82,7 +82,7 @@ class HomeController extends Controller
         $deathCasesKeys =   $collection->pluck('attributes')
                                             ->pluck('Date')
                                             ->map(function ($item) {
-                                                return date('m/d/Y', $item / 1000);
+                                                return date('d/m/Y', $item / 1000);
                                             });
 
         $deathCasesValues   =   $collection->pluck('attributes')
@@ -98,7 +98,7 @@ class HomeController extends Controller
         $compareCasesKeys =   $collection->pluck('attributes')
                                             ->pluck('Date')
                                             ->map(function ($item) {
-                                                return date('m/d/Y', $item / 1000);
+                                                return date('d/m/Y', $item / 1000);
                                             });
 
         $compareCasesChart = new CompareCasesChart;
@@ -138,7 +138,7 @@ class HomeController extends Controller
         $confirmedByDayCasesKeys =  $collection->pluck('attributes')
                                         ->pluck('Date')
                                         ->map(function ($item) {
-                                            return date('m/d/Y', $item / 1000);
+                                            return date('d/m/Y', $item / 1000);
                                         });
 
         $confirmedByDayCasesValues =  $collection->pluck('attributes')
@@ -155,7 +155,7 @@ class HomeController extends Controller
         $recoveredByDayCasesKeys =  $collection->pluck('attributes')
                                         ->pluck('Date')
                                         ->map(function ($item) {
-                                            return date('m/d/Y', $item / 1000);
+                                            return date('d/m/Y', $item / 1000);
                                         });
 
         $recoveredByDayCasesValues =  $collection->pluck('attributes')
@@ -172,7 +172,7 @@ class HomeController extends Controller
         $deathByDayCasesKeys =  $collection->pluck('attributes')
                                         ->pluck('Date')
                                         ->map(function ($item) {
-                                            return date('m/d/Y', $item / 1000);
+                                            return date('d/m/Y', $item / 1000);
                                         });
 
         $deathByDayCasesValues =  $collection->pluck('attributes')
