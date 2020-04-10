@@ -48,7 +48,7 @@
                 @foreach ($regions['features'] as $region)
                   <tr>
                     <td>
-                      {{$region['attributes']['CR']}}
+                      {{$region['attributes']['OBJECTID_1']}}
                     </td>
                     <td>
                       {{$region['attributes']['Nom_Région_FR']}} <br>
