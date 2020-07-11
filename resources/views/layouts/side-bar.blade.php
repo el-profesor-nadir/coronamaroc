@@ -29,12 +29,12 @@
             Cas par jour <br> الحالات في كل يوم
           </a>
         </li>
-        <li class="nav-item {{ return_if(on_page('cities'), 'active') }}">
+        {{-- <li class="nav-item {{ return_if(on_page('cities'), 'active') }}">
           <a class="nav-link" href="{{ route('cities')}}">
             <i class="material-icons">location_city</i>
             Cas par ville <br> الحالات في كل مدينة
           </a>
-        </li>
+        </li> --}}
       </ul>
     </div>
 </div>

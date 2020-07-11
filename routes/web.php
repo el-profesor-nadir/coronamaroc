@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('/regions', 'HomeController@regions')->name('regions');
 Route::get('/days', 'HomeController@days')->name('days');
-Route::get('/cities', 'HomeController@cities')->name('cities');
+//Route::get('/cities', 'HomeController@cities')->name('cities');

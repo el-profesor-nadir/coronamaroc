@@ -37,12 +37,12 @@
                 <th>
                   Cas confirmé​s / الحالات المؤكدة
                 </th>
-                <th>
+                {{-- <th>
                   Rétablis  / المتعافون
                 </th>
                 <th>
                   Décédés  / الوفيات
-                </th>
+                </th> --}}
               </thead>
               <tbody>
                 @foreach ($regions['features'] as $region)
@@ -57,12 +57,12 @@
                     <td class="text-primary">
                       {{$region['attributes']['Cases'] == null ? '0' : $region['attributes']['Cases'] }}
                     </td>
-                    <td class="text-success">
+                   {{--  <td class="text-success">
                       {{$region['attributes']['Recoveries'] == null ? '0' : $region['attributes']['Recoveries'] }}
                     </td>
                     <td class="text-danger">
                       {{$region['attributes']['Deaths'] == null ? '0' : $region['attributes']['Deaths'] }}
-                    </td>
+                    </td> --}}
                   </tr>
                 @endforeach
               </tbody>
