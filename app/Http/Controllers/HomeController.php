@@ -34,6 +34,7 @@ class HomeController extends Controller
         $url_stats = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=json';
         $response_stats = Http::get($url_stats);
         $stats = $response_stats->json();
+        //dd($stats['features']);
         //array_pop($stats['features']);
         
         $url_regions = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
@@ -122,12 +123,11 @@ class HomeController extends Controller
         $url_stats = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=json';
         $response_stats = Http::get($url_stats);
         $stats = $response_stats->json();
-
         
         $url_regions = 'https://services3.arcgis.com/hjUMsSJ87zgoicvl/arcgis/rest/services/Covid_19/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
         $response_regions = Http::get($url_regions);
         $regions = $response_regions->json();
-        
+
         //charts
 
         $collection = collect($stats['features']);
@@ -139,10 +139,10 @@ class HomeController extends Controller
                                         ->pluck('Date')
                                         ->map(function ($item) {
                                             return date('d/m/Y', $item / 1000);
-                                        });
+                                        }); 
 
         $confirmedByDayCasesValues =  $collection->pluck('attributes')
-                                        ->pluck('Cas_Jour');
+                                        ->pluck('Cas_confirmés_par_jour');
                                                                             
         $confirmedCasesByDayChart = new ConfirmedCasesByDayChart;
         $confirmedCasesByDayChart->labels($confirmedByDayCasesKeys);
@@ -159,7 +159,7 @@ class HomeController extends Controller
                                         });
 
         $recoveredByDayCasesValues =  $collection->pluck('attributes')
-                                        ->pluck('Rtabalis_jour');
+                                        ->pluck('Rétablis_par_jour');
 
         $recoveredCasesByDayChart = new RecoveredCasesByDayChart;
         $recoveredCasesByDayChart->labels($recoveredByDayCasesKeys);
@@ -176,7 +176,7 @@ class HomeController extends Controller
                                         });
 
         $deathByDayCasesValues =  $collection->pluck('attributes')
-                                        ->pluck('Deces_jour');
+                                        ->pluck('Cas_confirmés_par_jour');
                                                                             
         $deathCasesByDayChart = new DeathCasesByDayChart;
         $deathCasesByDayChart->labels($deathByDayCasesKeys);

@@ -29,7 +29,7 @@
           <div class="stats">
             <span class="text-warning font-weight-bold">
               <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-              {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_Jour'] }}
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_confirmés_par_jour'] }}
             </span>
           </div>
         </div>
@@ -48,7 +48,7 @@
           <div class="stats">
             <span class="text-success font-weight-bold">
               <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-              {{ $stats['features'][count($stats['features'])-1]['attributes']['Rtabalis_jour'] }}
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Rétablis_par_jour'] }}
             </span>
           </div>
         </div>
@@ -67,7 +67,7 @@
           <div class="stats">
             <span class="text-danger font-weight-bold">
               <i class="material-icons">add_alert</i> Nouveau cas  حالة جديدة
-              {{ $stats['features'][count($stats['features'])-1]['attributes']['Deces_jour'] }}
+              {{ $stats['features'][count($stats['features'])-1]['attributes']['Cas_décédés_par_jour'] }}
             </span>
           </div>
         </div>
